@@ -102,6 +102,36 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Check input for letters 
+    document.getElementById("first-num").addEventListener("input", (e) =>{
+      try{
+        if(!  /^-?[\d.]+(?:e-?\d+)?$/.test(e.target.value)){
+          throw new Error("Contains letter");
+        }
+      }catch(error){
+        console.log('Hello some sort of error occured. I think there was a letter in the first number');
+      }finally{
+        console.log('NICE ONE');
+      }
+    });
+
+    class ContainsLetterError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "ContainsLetterError";
+      }
+    }
+    document.getElementById("second-num").addEventListener("input", (e) =>{
+      try{
+        if(!  /^-?[\d.]+(?:e-?\d+)?$/.test(e.target.value)){
+          throw new ContainsLetterError("Woah you typed a letter in the second number");
+        }
+      }catch(err){
+        alert(err.message);
+      }
+    });
+    
     
     // console log 
     errorBtns[0].addEventListener('click', function () {
@@ -192,7 +222,6 @@
 
     // console global 
     
-
     
   </script>
 </body>
